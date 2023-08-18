@@ -1,0 +1,8 @@
+# 超市管理系统设计介绍
+## 基本功能
+一个用于管理超市商品和销售信息的系统。它的基本功能包括：添加商品、删除商品、修改商品信息、查询商品、录入销售信息、统计销售额、生成销售报表等
+### 代码内容
+首先定义了一个Product结构体来表示商品的数据，以及一个SalesRecord结构体来表示销售记录的数据。然后定义了一个SupermarketManager类来管理超市商品和销售信息，包括添加商品、删除商品、修改商品信息、查询商品、录入销售信息、统计销售额、生成销售报表等功能。
+在main函数中，首先创建一个SupermarketManager对象，并使用addProduct方法添加几个商品。然后使用deleteProduct方法删除一个商品记录，并使用updateProduct方法修改一个商品记录。接着使用findProductById方法按商品编号查询商品记录，并使用printProductInfo方法输出商品信息。然后使用addSalesRecord方法录入几个销售记录。接着使用calculateTotalSales方法统计销售额，并使用generateSalesReport方法生成销售报表。
+## 代码说明中的警告内容
+C6031  在VS中打开属性栏>属性配置>C/C++>所有选项，将SDL检查改为否，保存即可，不影响代码的运行
