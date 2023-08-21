@@ -64,7 +64,7 @@ int InputStudent()  //输入学生信息
 		printf("\n请输入第%d个学生的信息:\n", i);
 		
 		printf("学号: ");
-		scanf("%ld", &Stu[i].num);
+		scanf_s("%ld", &Stu[i].num);
 	
 
 		printf("姓名: ");
@@ -81,7 +81,7 @@ int InputStudent()  //输入学生信息
 
 		printf("计算机成绩: ");
 		scanf("%d", &Stu[i].computer);
-
+		Stu[i].pj = (Stu[i].math + Stu[i].english + Stu[i].computer) / 3;
 		i++;
 		n++;
 
@@ -121,10 +121,10 @@ void SortStudentpj()		//平均成绩排序
 	int j;
 	int i;
 	system("cls");
-	printf("\n============按平均成绩排序===========\n");
+	printf("\n============按平均成绩排序===========\n");//按平均成绩排序
 	for (j = 0; j < n - 1; j++)
 		for (i = 1; i < n - j; i++) {
-			Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math) / 3;
+			//Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math) / 3;
 			if (Stu[i].pj < Stu[i + 1].pj) {
 				k = Stu[i];
 				Stu[i] = Stu[i + 1];
@@ -151,7 +151,7 @@ void SortStudentjsj()		//计算机成绩排序
 	int j;
 	int i;
 	system("cls");
-	printf("\n============按计算机成绩排序===========\n");
+	printf("\n============按计算机成绩排序===========\n");//按计算机成绩排序
 	for (j = 0; j < n - 1; j++)
 		for (i = 1; i < n - j; i++) {
 			if (Stu[i].computer < Stu[i + 1].computer) {
@@ -161,7 +161,7 @@ void SortStudentjsj()		//计算机成绩排序
 			}
 		}
 	for (i = 1; i <= n; i++) {
-		Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math)/3;
+		//Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math)/3;
 		printf("学生的学号为:%ld\n", Stu[i].num);
 		printf("学生的姓名为:%s\n", Stu[i].name);
 		printf("学生的班级为:%d\n", Stu[i].class);
@@ -185,7 +185,7 @@ void FindStudentxh()		//按学号查找学生信息
 
 	for (i = 1; i <= n; i++) {
 		if (xuehao == Stu[i].num) {
-			Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math)/3;
+		    Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math)/3;
 			printf("\n查找成功!\n\n\n");
 			printf("学生的学号为:%ld\n", Stu[i].num);
 			printf("学生的姓名为:%s\n", Stu[i].name);
@@ -213,7 +213,7 @@ void FindStudentxm()     //按姓名查找学生信息
     scanf("%s", xingming);
 
     for (i = 1; i <= n; i++) {
-		//strcpy(std,Stu[i].name);???
+		//strcpy(std,Stu[i].name);
 	    if (strcmp(xingming,Stu[i].name) == 0) {
 		    Stu[i].pj = (Stu[i].computer + Stu[i].english + Stu[i].math)/3;
 		    printf("\n查找成功!\n\n\n");
@@ -262,6 +262,7 @@ void DeleteStudent()	//删除学生记录
 					Stu[j].math = Stu[j + 1].math;
 					Stu[j].english = Stu[j + 1].english;
 					Stu[j].computer = Stu[j + 1].computer;
+					Stu[j].pj = Stu[j + 1].pj;
 				}
 				n--;
 				return main();
@@ -312,7 +313,7 @@ void ModifyStudent()	//修改学生信息
 void ClassGradeAnalysis()//班级成绩分析
 {
 	printf("\n============班级成绩分析报告===========\n");
-	printf("\n============各科平均成绩和及格率===========\n");
+	printf("\n============各科成绩分析===========\n");
 	printf("数学平均成绩：");
 	int i;
 	int m = 0;
@@ -380,10 +381,10 @@ void ClassGradeAnalysis()//班级成绩分析
 			ymax = Stu[i].english;
 		}
 	}
-	printf(" % d\t", ymax);
+	printf(" %d\t", ymax);
 	printf("英语最低分为：");
 	int ymin = ymax;
-	for (i = 1; i <=n; i++)
+	for (i = n; i >0; i--)
 	{
 		if (Stu[i].math < ymin)
 		{
