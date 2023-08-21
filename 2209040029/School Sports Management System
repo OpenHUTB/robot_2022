@@ -1,1 +1,88 @@
+#include<stdio.h>
+#include<string.h>
 
+struct sport
+{
+char name[50];
+char college[50];
+char sex[50];
+char item[50];
+int rank;
+}stu[100];
+ 
+int i=0;
+void sportdate()//查看运动员比赛信息
+{
+for(i=0;i<100;i++)
+{
+printf("学院: ");
+scanf("%s",&stu[i].college);
+printf("姓名: ");
+scanf("%s",&stu[i].name);
+printf("性别: ");
+scanf("%s",&stu[i].sex);
+printf("项目:");
+scanf("%s",&stu[i].item);
+printf("运动员名次：");
+scanf("%d",&stu[i].rank);
+}}
+
+void zongfen()//查询院系总分
+{
+int sum=0,x;
+char a[20];
+printf("输入学院名称：");
+scanf("%s",&a);//输入院系名
+for(i=0;i<100;i++)
+    { if(strcmp(stu[i].college,a)==0)
+        {
+             if(stu[i].rank==1) x=7;
+             else if(stu[i].rank==2) x=5;
+             else if(stu[i].rank==3) x=3;
+             else if(stu[i].rank==4) x=2;
+             else if(stu[i].rank==5) x=1;
+             else x=0;
+             sum=sum+x;
+         }
+   
+    }
+    printf("\n该学院团体总分%d:\n",sum);
+}
+
+void winner()//查看获奖运动员
+{
+for(i=0;i<100;i++)
+{
+scanf("%d",stu[i].rank);
+if(stu[i].rank<=5)
+{
+printf("%s",stu[i].name);
+}
+}}
+
+void Exit()
+{
+	printf("****************************************************************\n");
+	printf("                                                            ||\n");
+	printf("                   离开此界面                                  "); 
+	printf("                                                            ||\n");
+	printf("                                                         ||\n");
+	printf("                                                        ||\n");
+	printf("****************************************************************\n");
+}
+
+
+
+int main()
+{
+int b;
+scanf("%d",&b);
+switch(b)
+{
+case 1: sportdate();
+case 2: zongfen();
+case 3:  winner();
+case 4:  Exit();
+}
+return 0;
+}
