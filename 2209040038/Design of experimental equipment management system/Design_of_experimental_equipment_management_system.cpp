@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 定义设备结构体
 typedef struct {
     int id;
     char type[50];
@@ -12,10 +13,11 @@ typedef struct {
     char scrappedDate[20];
 } Device;
 
-Device devices[100]; 
-int count = 0; 
+// 全局变量
+Device devices[100]; // 最大设备数量为100
+int count = 0; // 当前设备数量
 
-
+// 函数声明
 void displayMenu();
 void addDevice();
 void modifyDevice();
@@ -26,7 +28,7 @@ void searchDevice();
 int main() {
     int choice;
 
- 
+    // 主循环
     while (1) {
         displayMenu();
         printf("请输入选择：");
@@ -58,7 +60,7 @@ int main() {
     return 0;
 }
 
-
+// 显示菜单
 void displayMenu() {
     printf("\n************* 实验设备管理系统 *************\n");
     printf("1. 录入设备信息\n");
@@ -70,7 +72,7 @@ void displayMenu() {
     printf("*******************************************\n");
 }
 
-
+// 录入设备信息
 void addDevice() {
     if (count >= 100) {
         printf("设备数量已达上限，无法录入更多设备。\n");
@@ -99,7 +101,7 @@ void addDevice() {
     printf("设备录入成功。\n");
 }
 
-
+// 修改设备信息
 void modifyDevice() {
     int id;
     int i;
@@ -139,6 +141,7 @@ void modifyDevice() {
     }
 }
 
+// 设备分类统计
 void classifyDevices() {
     int i;
     int computerCount = 0;
@@ -165,7 +168,7 @@ void classifyDevices() {
     printf("其他设备：%d台\n", otherCount);
 }
 
-
+// 设备破损耗费和遗损处理
 void processDamagedDevices() {
     int id;
     int i;
@@ -194,7 +197,7 @@ void processDamagedDevices() {
     }
 }
 
-
+// 查询设备
 void searchDevice() {
     int id;
     int i;
