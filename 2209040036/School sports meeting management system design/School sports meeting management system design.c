@@ -11,9 +11,9 @@ typedef struct stunode
 	char grade[10];
 	int rank;
 	struct stunode* next;
-}STU;  			/*定义链表结点的结构体类型struct stunode,取别名STU*/
-STU head;		/
-char stu[20][20];		/
+}STU;  			
+STU head;		
+char stu[20][20];	
 void maininterface();
 void createList();
 void printall();
@@ -25,13 +25,13 @@ void modify();
 void allscore();
 void getprize();
 int getscore();
-int N, M, W;		/*定义整型N，M，W，用于初始化存放参赛院系总数、男子竞赛项目数和女子竞赛项目数*/
-int k = 0;		/*用于创建链表时的计数（区分首次创建链表和再次创建链表）*/
+int N, M, W;		
+int k = 0;		
 int main(int argc, char* argv[])
 {
 	int i;
 	int select;
-	head.next = NULL;		/*将头结点的next至为NULL*/
+	head.next = NULL;		
 	printf("\t\t\t------------------------\n");
 	printf("\t\t\t*******系统初始化*******\n");
 	printf("\t\t\t1.请输入参赛院系总数：");
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 		maininterface();
 		printf("\n*请选择需要的操作：");
 		scanf("%d", &select);
-		fflush(stdin);	/*清除键盘缓冲区*/
+		fflush(stdin);	
 		switch (select)	/*根据用户选择，调用相应函数完成操作*/
 		{
 		case 1:createList();break;
@@ -93,8 +93,7 @@ void maininterface()
 	printf("\t\t0.退出\n");
 	printf("\t\t--------------------------\n");
 	return;
-}
-/*函数功能：创建某项目的n个获奖信息*/
+}/*函数功能：创建某项目的n个获奖信息*/ 
 void createList()
 {
 	int i, n, j = 0;
