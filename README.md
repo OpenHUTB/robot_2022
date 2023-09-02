@@ -1,5 +1,5 @@
-# 销售管理系统设计
+# 二十四点游戏设计
 ## 运行软件
 Dev-C++
-## 操作系统
-Windows11 Version 22H2
+### 操作系统
+Windows 11 Version 22H 2
