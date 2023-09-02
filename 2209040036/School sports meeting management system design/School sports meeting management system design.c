@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
+<<<<<<< HEAD
 typedef struct stunode
 {
 	char sport[20];
@@ -657,3 +655,5 @@ void modify()
 	}
 	return;
 }
+=======
+>>>>>>> 00d2222d1b96d07ad55272e0ad27df41e1fd7cca
