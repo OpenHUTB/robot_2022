@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 4  // 定义参与游戏的数字数量为4
+
+/* 表达式结构体
+ * value: 表达式的值
+ * expression: 表达式字符串
+ */
+typedef struct {
+	double value;
+	char expression[5 * (SIZE - 1) + SIZE * 2 + 1];  // 表达式字符串的长度为 5 * (SIZE - 1) + SIZE * 2 + 1
+} Exp;
+
+/* 处理24点游戏的函数
+ * 如果能得到结果为24的表达式，返回1，否则返回0
+ */
+int process24(Exp* exps, int size) {
+	Exp* stack = (Exp*) calloc(size - 1, sizeof(Exp));
+
+	/*
+	 * 当只有一个数字时，判断是否等于24
+	 */
+	if(size == 1) {
+		if(exps[0].value == 24) {
+			printf( "24 = %s\n", exps[0].expression  );
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	/*
+	 * 循环遍历所有可能的数字组合
+	 */
+	int m, n, i, t;
+	for (m = 0; m < size - 1; m++) {
+		for (n = m + 1; n < size; n++) {
+
+			/*
+			 * 构建一个新的数字数组，排除当前两个数字
+			 */
+			t = 0;
+			for (i = 0; i < size; i++) {
+				if (i != m && i != n) {
+					stack[t].value = exps[i].value;
+					sprintf(stack[t].expression, "%s", exps[i].expression);
+					t++;
+				}
+			}
+
+			/*
+			 * 尝试加法运算
+			 */
+			stack[size - 2].value = exps[m].value + exps[n].value;
+			sprintf(stack[size - 2].expression, "(%s + %s)", exps[m].expression, exps[n].expression);
+			if (process24(stack, size - 1)) {
+				return 1;
+			}
+
+			/*
+			 * 尝试减法运算
+			 */
+			if (exps[m].value > exps[n].value) {
+				stack[size - 2].value = exps[m].value - exps[n].value;
+				sprintf(stack[size - 2].expression, "(%s - %s)", exps[m].expression, exps[n].expression);
+			}
+			else {
+				stack[size - 2].value = exps[n].value - exps[m].value;
+				sprintf(stack[size - 2].expression, "(%s - %s)", exps[n].expression, exps[m].expression);
+			}
+			if (process24(stack, size - 1)) {
+				return 1;
+			}
+
+			/*
+			 * 尝试乘法运算
+			 */
+			stack[size - 2].value = exps[m].value * exps[n].value;
+			sprintf(stack[size - 2].expression, "%s * %s", exps[m].expression, exps[n].expression);
+			if (process24(stack, size - 1)) {
+				return 1;
+			}
+
+			/*
+			 * 尝试除法运算
+			 */
+			if (exps[m].value != 0) {
+				stack[size - 2].value = exps[n].value / exps[m].value;
+				sprintf(stack[size - 2].expression, "%s / %s", exps[n].expression, exps[m].expression);
+				if (process24(stack, size - 1)) {
+					return 1;
+				}
+			}
+			if (exps[n].value != 0) {
+				stack[size - 2].value = exps[m].value / exps[n].value;
+				sprintf(stack[size - 2].expression, "%s / %s", exps[m].expression, exps[n].expression);
+				if (process24(stack, size - 1)) {
+					return 1;
+				}
+			}
+		}
+	}
+
+	return 0;  // 无法找到24的组合，返回0
+}
+
+int main(void) {
+	int i, number;
+	Exp exps[SIZE];
+
+	// 输入4个数字并保存在exps数组中
+	for (i = 0; i < SIZE; i++) {
+		scanf("%d", &number);
+		exps[i].value = (double) number;
+		sprintf(exps[i].expression, "%d", number);
+	}
+
+	// 调用处理24点游戏的函数
+	if (process24(exps, SIZE)) {
+		printf("Done\n");
+	} else {
+		printf("No answer, try another 4 numbers.\n");
+	}
+
+	return 0;
+}
