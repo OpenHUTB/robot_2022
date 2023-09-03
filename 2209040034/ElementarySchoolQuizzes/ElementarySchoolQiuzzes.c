@@ -17,7 +17,7 @@ void PutAndJudge(StuTest S);
 
 StuTest CreateStuTest() {
 	StuTest S;
-	srand((unsigned)time(NULL));
+	srand((unsigned)time(NULL));//防止重复
 	for (int i = 0; i < 10; i++) {
 		S.oper[i] = (rand() % 2) ? '+' : '-';
 		do {
@@ -73,4 +73,5 @@ int main() {
 	StuTest S = CreateStuTest();
 	PutAndJudge(S);
 	system("pause");
+	return 0;
 }
